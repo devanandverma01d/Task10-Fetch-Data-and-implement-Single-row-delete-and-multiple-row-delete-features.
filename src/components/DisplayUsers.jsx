@@ -8,13 +8,21 @@ const DisplayUsers = ({
   handleCheckbox, 
   selectedUsers, 
   handleAllDeleteCheckedItems,
-  handleDelete
+  handleDelete,
+  handleSelectAll,
+  selectAll
 }) => {
   if (loading) return <strong>Loading.....</strong>;
   if (error) return <strong>Error: {error}</strong>;
 
   return (
     <div>
+    <button 
+        onClick={handleSelectAll} 
+        disabled={users?.length === 0}
+      >
+        {selectAll ? "Deselect All" : "Select All"}
+      </button>
       <button onClick={handleAllDeleteCheckedItems} disabled={selectedUsers.length===0}>Delete All Checked Items</button>
       <Table striped bordered hover>
         <thead>

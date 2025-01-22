@@ -5,6 +5,7 @@ import useFetch from "./useFetch";
 const Users = () => {
   const { data, setData, loading, error } = useFetch("https://jsonplaceholder.typicode.com/users");
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectAll, setSelectAll] = useState(false); // Track "Select All" state
 
   const handleCheckbox = (userId) => {
     setSelectedUsers((prevChecked) =>
@@ -26,6 +27,15 @@ const Users = () => {
       setData(remainingUsers);
     };
 
+    const handleSelectAll = () => {
+      if (selectAll) {
+        setSelectedUsers([]); // Deselect all
+      } else {
+        setSelectedUsers(data.map((user) => user.id)); // Select all user IDs
+      }
+      setSelectAll(!selectAll); // Toggle the selectAll state
+    };
+
   return (
     <div>
       <DisplayUsers
@@ -36,6 +46,8 @@ const Users = () => {
         loading={loading}
         error={error}
         handleDelete={handleDelete}
+        handleSelectAll={handleSelectAll}
+        selectAll={selectAll}
       />
     </div>
   );
