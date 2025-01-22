@@ -1,0 +1,1 @@
+# Task10-Fetch-Data-and-implement-Single-row-delete-and-multiple-row-delete-features.
